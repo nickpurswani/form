@@ -301,6 +301,7 @@ function submitForm() {
     y = n.getFullYear();
 m = n.getMonth() + 1;
 d = n.getDate();
+t=n.getHours();
 n.setDate(n.getDate() + 7);
 yn = n.getFullYear();
 mn = n.getMonth() + 1;
@@ -322,10 +323,17 @@ dl = x.getDate();
 tl=x.getHours();
 hl=x.getMinutes();
 let str=dl+"-"+ml+"-"+yl+" "+tl+":"+hl;
-if(dl<=dn && dl>=d){
+if(dl<=dn && dl>d){
     opt.appendChild( document.createTextNode(str) );
     opt.value = j["slot"]; 
     sel.appendChild(opt);}
+    else{
+        if(d==dl && tl>t+4){
+            opt.appendChild( document.createTextNode(str) );
+    opt.value = j["slot"]; 
+    sel.appendChild(opt);
+        }
+    }
             })
     }
     
