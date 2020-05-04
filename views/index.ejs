@@ -297,6 +297,15 @@ function submitForm() {
     return false; // Prevent page refresh
  }
  function selfun(){ 
+    n =  new Date();
+    y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+n.setDate(n.getDate() + 7);
+yn = n.getFullYear();
+mn = n.getMonth() + 1;
+dn = n.getDate();
+
     fetch('https://script.googleusercontent.com/macros/echo?user_content_key=ABVEkxlexxd0wL88n3EL56SVbf5bfND5ipBi2sCdbNjbvZcTbyylpIGPvNkOhu_QGKmTIvViAzXFRQm35SeeOddVG0TIgU9im5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC09Nb0QZ6ca_LU0vmo6mSiQ7SyFG3CgdL9-1Vgcha-TAYaAGhh-9xNG-9rMNEZHQRElvdDletx0&lib=MlJcTt87ug5f_XmzO-tnIbN3yFe7Nfhi6')
     .then(response => response.json())
     .then(data => 
@@ -306,9 +315,17 @@ function submitForm() {
         i["slots"].forEach(function(j){
             var sel = document.getElementById('slot');
     var opt = document.createElement('option');
-    opt.appendChild( document.createTextNode(j["slot"]) );
+    let x= new Date(parseInt(j["slot"]));
+    yl = x.getFullYear();
+ml= x.getMonth() + 1;
+dl = x.getDate();
+tl=x.getHours();
+hl=x.getMinutes();
+let str=dl+"-"+ml+"-"+yl+" "+tl+":"+hl;
+if(dl<=dn && dl>=d){
+    opt.appendChild( document.createTextNode(str) );
     opt.value = j["slot"]; 
-    sel.appendChild(opt);
+    sel.appendChild(opt);}
             })
     }
     
