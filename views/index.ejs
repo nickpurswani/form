@@ -297,6 +297,11 @@ function submitForm() {
     return false; // Prevent page refresh
  }
  function selfun(){ 
+    var select = document.getElementById("slot");
+    var length = select.options.length;
+    for (i = length-1; i >= 0; i--) {
+      select.options[i] = null;
+    }
     n =  new Date();
     y = n.getFullYear();
 m = n.getMonth() + 1;
@@ -311,8 +316,11 @@ dn = n.getDate();
     .then(response => response.json())
     .then(data => 
     data.forEach(function(i){
-    var select=document.getElementById("course").value;
-    if(select=i["course_name"]){
+    let selval=document.getElementById("course").value;
+    console.log(selval);
+    console.log(i["course_name"]);
+    console.log(selval=i["course_name"]);
+    if(selval==i["course_name"]){
         i["slots"].forEach(function(j){
             var sel = document.getElementById('slot');
     var opt = document.createElement('option');
